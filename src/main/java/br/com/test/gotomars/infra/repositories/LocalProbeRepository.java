@@ -17,7 +17,7 @@ public class LocalProbeRepository implements ProbeRepository {
     }
 
     @Override
-    public Object updatePosition(UpdatePositionParams params) {
+    public ProbeEntity updatePosition(UpdatePositionParams params) {
         int index = probeEntityList.indexOf(params.getEntity());
 
         return probeEntityList.set(index,

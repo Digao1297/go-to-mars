@@ -6,7 +6,7 @@ import br.com.test.gotomars.domain.repositories.params.UpdatePositionParams;
 public interface ProbeRepository {
     ProbeEntity create(ProbeEntity entity);
 
-    Object updatePosition(UpdatePositionParams params);
+    ProbeEntity updatePosition(UpdatePositionParams params);
 }
 
 
