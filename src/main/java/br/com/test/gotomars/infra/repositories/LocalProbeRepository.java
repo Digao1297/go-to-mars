@@ -5,11 +5,10 @@ import br.com.test.gotomars.domain.repositories.ProbeRepository;
 import br.com.test.gotomars.domain.repositories.params.UpdatePositionParams;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LocalProbeRepository implements ProbeRepository {
 
-    private List<ProbeEntity> probeEntityList = new ArrayList<ProbeEntity>();
+    private final ArrayList<ProbeEntity> probeEntityList = new ArrayList<>();
 
     @Override
     public ProbeEntity create(ProbeEntity entity) {
@@ -18,7 +17,17 @@ public class LocalProbeRepository implements ProbeRepository {
     }
 
     @Override
-    public ProbeEntity updatePosition(UpdatePositionParams params) {
-        return null;
+    public Object updatePosition(UpdatePositionParams params) {
+        int index = probeEntityList.indexOf(params.getEntity());
+
+        return probeEntityList.set(index,
+                new ProbeEntity(
+                        params.getEntity().getName(),
+                        params.getX(),
+                        params.getY(),
+                        params.getDirection()
+                )
+        );
+
     }
 }
