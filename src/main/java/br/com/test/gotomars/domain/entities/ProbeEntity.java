@@ -8,15 +8,13 @@ public class ProbeEntity {
     private int x;
     private int y;
     private Directions direction;
-    private String moviments;
 
 
-    public ProbeEntity(String name, int x, int y, Directions direction, String moviments) {
+    public ProbeEntity(String name, int x, int y, Directions direction) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.direction = direction;
-        this.moviments = moviments;
     }
 
     public String getName() {
@@ -51,11 +49,5 @@ public class ProbeEntity {
         this.direction = direction;
     }
 
-    public String getMoviments() {
-        return moviments;
-    }
-
-    public void setMoviments(String moviments) {
-        this.moviments = moviments;
-    }
+    
 }
