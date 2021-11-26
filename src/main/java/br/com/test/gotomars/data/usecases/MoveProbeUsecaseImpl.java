@@ -54,7 +54,8 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
                             probeEntity.setY(params.getEntity().getY() - 1);
                             break;
                     }
-                    System.out.println(repository.updateProbeInQuadrant(probeEntity).toString());
+                    QuadrantEntity quadrant = repository.updateProbeInQuadrant(probeEntity);
+                    System.out.println("x: " + quadrant.getProbe().getX() + " Y: " + quadrant.getProbe().getY() + " " + quadrant.getProbe().getDirection());
                     break;
             }
         }
