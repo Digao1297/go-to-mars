@@ -28,18 +28,20 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
     public QuadrantEntity execute(MoveProbeUsecaseParams params) {
         for (int i = 0; i < params.getMoviments().length(); i++) {
             char c = params.getMoviments().charAt(i);
+            ProbeEntity probeEntity = params.getEntity();
+            QuadrantEntity quadrant;
 
             switch (c) {
                 case 'R':
                     Directions nextDirection = nextOrPreviousDirection(params.getEntity().getDirection(), true);
-                    params.getEntity().setDirection(nextDirection);
+                    probeEntity.setDirection(nextDirection);
+
                     break;
                 case 'L':
                     Directions previousDirection = nextOrPreviousDirection(params.getEntity().getDirection(), false);
-                    params.getEntity().setDirection(previousDirection);
+                    probeEntity.setDirection(previousDirection);
                     break;
                 case 'M':
-                    ProbeEntity probeEntity = params.getEntity();
                     switch (params.getEntity().getDirection()) {
                         case N:
                             probeEntity.setY(params.getEntity().getY() + 1);
@@ -54,10 +56,11 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
                             probeEntity.setY(params.getEntity().getY() - 1);
                             break;
                     }
-                    QuadrantEntity quadrant = repository.updateProbeInQuadrant(probeEntity);
-                    System.out.println("x: " + quadrant.getProbe().getX() + " Y: " + quadrant.getProbe().getY() + " " + quadrant.getProbe().getDirection());
+
                     break;
             }
+            quadrant = repository.updateProbeInQuadrant(probeEntity);
+            System.out.println("x: " + quadrant.getProbe().getX() + " Y: " + quadrant.getProbe().getY() + " " + quadrant.getProbe().getDirection());
         }
         return null;
     }

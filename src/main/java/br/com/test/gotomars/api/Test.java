@@ -16,7 +16,7 @@ public class Test {
 
         generateQuadrantsUsecase.execute();
 
-        moveProbeUsecase.execute(new MoveProbeUsecaseParams("LRM", new ProbeEntity("Sonda", 0, 0, Directions.N)));
+        moveProbeUsecase.execute(new MoveProbeUsecaseParams("LRRM", new ProbeEntity("Sonda", 0, 0, Directions.N)));
 
     }
 
