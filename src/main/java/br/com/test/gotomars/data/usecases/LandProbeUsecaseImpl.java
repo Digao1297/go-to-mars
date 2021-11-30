@@ -1,10 +1,10 @@
 package br.com.test.gotomars.data.usecases;
 
+import br.com.test.gotomars.domain.entities.ProbeEntity;
 import br.com.test.gotomars.domain.entities.QuadrantEntity;
 import br.com.test.gotomars.domain.repositories.ProbeRepository;
 import br.com.test.gotomars.domain.repositories.QuadrantRepository;
 import br.com.test.gotomars.domain.usecases.LandProbeUsecase;
-import br.com.test.gotomars.domain.usecases.params.MoveProbeUsecaseParams;
 
 public class LandProbeUsecaseImpl implements LandProbeUsecase {
 
@@ -17,9 +17,14 @@ public class LandProbeUsecaseImpl implements LandProbeUsecase {
     }
 
     @Override
-    public QuadrantEntity execute(MoveProbeUsecaseParams params) {
-        return null;
+    public QuadrantEntity execute(ProbeEntity entity) throws Exception {
+        try {
+            ProbeEntity probe = probeRepository.create(entity);
+            QuadrantEntity quadrant = quadrantRepository.landProbeInQuadrant(probe);
+            return quadrant;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
     }
-
-
 }

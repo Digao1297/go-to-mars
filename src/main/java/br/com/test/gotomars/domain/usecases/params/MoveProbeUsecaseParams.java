@@ -1,13 +1,13 @@
 package br.com.test.gotomars.domain.usecases.params;
 
-import br.com.test.gotomars.domain.entities.ProbeEntity;
+import br.com.test.gotomars.domain.entities.QuadrantEntity;
 
 public class MoveProbeUsecaseParams {
     private String moviments;
-    private ProbeEntity entity;
+    private QuadrantEntity entity;
 
-    public MoveProbeUsecaseParams(String movements, ProbeEntity entity) {
-        this.moviments = movements;
+    public MoveProbeUsecaseParams(String moviments, QuadrantEntity entity) {
+        this.moviments = moviments;
         this.entity = entity;
     }
 
@@ -19,11 +19,11 @@ public class MoveProbeUsecaseParams {
         this.moviments = moviments;
     }
 
-    public ProbeEntity getEntity() {
+    public QuadrantEntity getEntity() {
         return entity;
     }
 
-    public void setEntity(ProbeEntity entity) {
+    public void setEntity(QuadrantEntity entity) {
         this.entity = entity;
     }
 }

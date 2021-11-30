@@ -24,22 +24,22 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
 
     @Override
     public QuadrantEntity execute(MoveProbeUsecaseParams params) {
-        ProbeEntity probeEntity = params.getEntity();
+        ProbeEntity probeEntity = params.getEntity().getProbe();
         QuadrantEntity quadrant;
         for (int i = 0; i < params.getMoviments().length(); i++) {
             char c = params.getMoviments().charAt(i);
             switch (c) {
                 case 'R':
-                    Directions nextDirection = nextOrPreviousDirection(params.getEntity().getDirection(), true);
+                    Directions nextDirection = nextOrPreviousDirection(params.getEntity().getProbe().getDirection(), true);
                     probeEntity.setDirection(nextDirection);
 
                     break;
                 case 'L':
-                    Directions previousDirection = nextOrPreviousDirection(params.getEntity().getDirection(), false);
+                    Directions previousDirection = nextOrPreviousDirection(params.getEntity().getProbe().getDirection(), false);
                     probeEntity.setDirection(previousDirection);
                     break;
                 case 'M':
-                    switch (params.getEntity().getDirection()) {
+                    switch (params.getEntity().getProbe().getDirection()) {
                         case N:
                             probeEntity.setY(params.getEntity().getY() + 1);
                             break;

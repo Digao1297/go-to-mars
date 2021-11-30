@@ -14,26 +14,26 @@ public class LocalQuadrantRepository implements QuadrantRepository {
     }
 
     @Override
-    public QuadrantEntity landProbeInQuadrant(ProbeEntity entity) {
+    public QuadrantEntity landProbeInQuadrant(ProbeEntity entity) throws Exception {
         if (quadrantIsEmpty(entity)) {
-            System.out.println("Quadrante ocupado");
-            return null;
-        } else {
             quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
             return quadrantEntities[entity.getX()][entity.getY()];
+        } else {
+            throw new Exception("Quadrante ocupado!");
         }
     }
 
     @Override
-    public QuadrantEntity updateProbeInQuadrant(ProbeEntity entity) {
-        if (searchProbe(entity)) {
+    public QuadrantEntity updateProbeInQuadrant(ProbeEntity newEntity) {
+        /*if (searchProbe(entity)) {
 
         } else {
 
         }
 
         quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
-        return quadrantEntities[entity.getX()][entity.getY()];
+        return quadrantEntities[entity.getX()][entity.getY()];*/
+        return null;
     }
 
 
