@@ -4,6 +4,7 @@ import br.com.test.gotomars.domain.entities.ProbeEntity;
 import br.com.test.gotomars.domain.entities.QuadrantEntity;
 import br.com.test.gotomars.domain.enums.Directions;
 import br.com.test.gotomars.domain.repositories.QuadrantRepository;
+import br.com.test.gotomars.domain.repositories.params.UpdateProbeInQuadrantParams;
 import br.com.test.gotomars.domain.usecases.MoveProbeUsecase;
 import br.com.test.gotomars.domain.usecases.params.MoveProbeUsecaseParams;
 import br.com.test.gotomars.domain.windRose.WindRose;
@@ -23,23 +24,24 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
     }
 
     @Override
-    public QuadrantEntity execute(MoveProbeUsecaseParams params) {
+    public ProbeEntity execute(MoveProbeUsecaseParams params) {
         ProbeEntity probeEntity = params.getEntity().getProbe();
         QuadrantEntity quadrant;
+
+
         for (int i = 0; i < params.getMoviments().length(); i++) {
             char c = params.getMoviments().charAt(i);
             switch (c) {
                 case 'R':
-                    Directions nextDirection = nextOrPreviousDirection(params.getEntity().getProbe().getDirection(), true);
+                    Directions nextDirection = nextOrPreviousDirection(probeEntity.getDirection(), true);
                     probeEntity.setDirection(nextDirection);
-
                     break;
                 case 'L':
-                    Directions previousDirection = nextOrPreviousDirection(params.getEntity().getProbe().getDirection(), false);
+                    Directions previousDirection = nextOrPreviousDirection(probeEntity.getDirection(), false);
                     probeEntity.setDirection(previousDirection);
                     break;
                 case 'M':
-                    switch (params.getEntity().getProbe().getDirection()) {
+                    switch (probeEntity.getDirection()) {
                         case N:
                             probeEntity.setY(params.getEntity().getY() + 1);
                             break;
@@ -53,14 +55,14 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
                             probeEntity.setY(params.getEntity().getY() - 1);
                             break;
                     }
-
-                    break;
             }
-
         }
-        quadrant = repository.updateProbeInQuadrant(probeEntity);
-        System.out.println("x: " + quadrant.getProbe().getX() + " Y: " + quadrant.getProbe().getY() + " " + quadrant.getProbe().getDirection());
-        return null;
+        try {
+            return repository.updateProbeInQuadrant(new UpdateProbeInQuadrantParams(probeEntity, params.getEntity()));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
     }
 
     private Directions nextOrPreviousDirection(Directions direction, boolean isNext) {

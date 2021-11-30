@@ -51,5 +51,13 @@ public class ProbeEntity {
         this.direction = direction;
     }
 
-   
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                        ", x=" + x +
+                        ", y=" + y +
+                        ", direction=" + direction;
+
+    }
 }

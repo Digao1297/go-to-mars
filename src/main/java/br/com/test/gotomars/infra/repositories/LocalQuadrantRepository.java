@@ -3,6 +3,7 @@ package br.com.test.gotomars.infra.repositories;
 import br.com.test.gotomars.domain.entities.ProbeEntity;
 import br.com.test.gotomars.domain.entities.QuadrantEntity;
 import br.com.test.gotomars.domain.repositories.QuadrantRepository;
+import br.com.test.gotomars.domain.repositories.params.UpdateProbeInQuadrantParams;
 
 public class LocalQuadrantRepository implements QuadrantRepository {
     private final int size = 16;
@@ -24,38 +25,21 @@ public class LocalQuadrantRepository implements QuadrantRepository {
     }
 
     @Override
-    public QuadrantEntity updateProbeInQuadrant(ProbeEntity newEntity) {
-        /*if (searchProbe(entity)) {
+    public ProbeEntity updateProbeInQuadrant(UpdateProbeInQuadrantParams params) throws Exception {
+        QuadrantEntity quadrantEntity = params.getQuadrantEntity();
+        ProbeEntity newPositionEntity = params.getProbeEntity();
 
+        if (quadrantIsEmpty(newPositionEntity)) {
+            quadrantEntities[quadrantEntity.getX()][quadrantEntity.getY()].setProbe(null);
+            quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].setProbe(newPositionEntity);
+            return quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].getProbe();
         } else {
-
+            throw new Exception("Quadrante ocupado!");
         }
-
-        quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
-        return quadrantEntities[entity.getX()][entity.getY()];*/
-        return null;
-    }
-
-
-    private boolean searchProbe(ProbeEntity entity) {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (quadrantEntities[i][j].getProbe() != null && quadrantEntities[i][j].getProbe().equals(entity)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        return false;
     }
 
     private boolean quadrantIsEmpty(ProbeEntity entity) {
-        if (quadrantEntities[entity.getX()][entity.getY()].getProbe() == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return quadrantEntities[entity.getX()][entity.getY()].getProbe() == null;
 
     }
 }

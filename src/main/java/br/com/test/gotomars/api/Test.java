@@ -11,6 +11,7 @@ import br.com.test.gotomars.domain.repositories.QuadrantRepository;
 import br.com.test.gotomars.domain.usecases.GenerateQuadrantsUsecase;
 import br.com.test.gotomars.domain.usecases.LandProbeUsecase;
 import br.com.test.gotomars.domain.usecases.MoveProbeUsecase;
+import br.com.test.gotomars.domain.usecases.params.MoveProbeUsecaseParams;
 import br.com.test.gotomars.infra.repositories.LocalProbeRepository;
 import br.com.test.gotomars.infra.repositories.LocalQuadrantRepository;
 
@@ -27,14 +28,15 @@ public class Test {
 
         generateQuadrantsUsecase.execute();
 
-        QuadrantEntity quadrant = landProbeUsecase.execute(new ProbeEntity("Sonda", 3, 3, Directions.E));
+        QuadrantEntity quadrant = landProbeUsecase.execute(new ProbeEntity("Sonda", 1, 2, Directions.N));
 
         System.out.println("X: " + quadrant.getX() + "\n" +
                 "Y: " + quadrant.getY() + "\n" +
                 "Probe: " + quadrant.getProbe().getName());
 
-        //moveProbeUsecase.execute(new MoveProbeUsecaseParams("MMRMMRMRRM", new ProbeEntity("Sonda", 3, 3, Directions.E)));
+        ProbeEntity probeResult = moveProbeUsecase.execute(new MoveProbeUsecaseParams("MMRMMRMRRM", quadrant));
 
+        System.out.println(probeResult.toString());
     }
 
 
