@@ -14,23 +14,48 @@ public class LocalQuadrantRepository implements QuadrantRepository {
     }
 
     @Override
-    public QuadrantEntity addProbe(ProbeEntity entity) {
+    public QuadrantEntity landProbeInQuadrant(ProbeEntity entity) {
+        if (quadrantIsEmpty(entity)) {
+            System.out.println("Quadrante ocupado");
+            return null;
+        } else {
+            quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
+            return quadrantEntities[entity.getX()][entity.getY()];
+        }
+    }
+
+    @Override
+    public QuadrantEntity updateProbeInQuadrant(ProbeEntity entity) {
+        if (searchProbe(entity)) {
+
+        } else {
+
+        }
 
         quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
         return quadrantEntities[entity.getX()][entity.getY()];
     }
 
-    @Override
-    public QuadrantEntity updateProbeInQuadrant(ProbeEntity entity) {
 
+    private boolean searchProbe(ProbeEntity entity) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (quadrantEntities[i][j].getProbe() != null) {
-
+                if (quadrantEntities[i][j].getProbe() != null && quadrantEntities[i][j].getProbe().equals(entity)) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         }
-        quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
-        return quadrantEntities[entity.getX()][entity.getY()];
+        return false;
+    }
+
+    private boolean quadrantIsEmpty(ProbeEntity entity) {
+        if (quadrantEntities[entity.getX()][entity.getY()].getProbe() == null) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

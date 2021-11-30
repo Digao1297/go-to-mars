@@ -28,8 +28,7 @@ public class LandProbeUsecaseImpl implements LandProbeUsecase {
 
     @Override
     public QuadrantEntity execute(LandProbeUsecaseParams params) {
-        ProbeEntity probe = probeRepository.create(params.getEntity());
-        ProbeEntity probeEntity = params.getEntity();
+        ProbeEntity probeEntity = probeRepository.create(params.getEntity());
         QuadrantEntity quadrant;
 
         for (int i = 0; i < params.getMoviments().length(); i++) {

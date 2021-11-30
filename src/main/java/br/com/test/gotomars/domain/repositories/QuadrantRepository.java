@@ -6,7 +6,7 @@ import br.com.test.gotomars.domain.entities.QuadrantEntity;
 public interface QuadrantRepository {
     QuadrantEntity create(QuadrantEntity entity);
 
-    QuadrantEntity addProbe(ProbeEntity entity);
-
+    QuadrantEntity landProbeInQuadrant(ProbeEntity entity);
+    
     QuadrantEntity updateProbeInQuadrant(ProbeEntity entity);
 }

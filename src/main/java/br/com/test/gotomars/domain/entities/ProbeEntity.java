@@ -7,6 +7,7 @@ public class ProbeEntity {
     private String name;
     private int x;
     private int y;
+
     private Directions direction;
 
 
@@ -14,6 +15,7 @@ public class ProbeEntity {
         this.name = name;
         this.x = x;
         this.y = y;
+
         this.direction = direction;
     }
 
@@ -49,5 +51,5 @@ public class ProbeEntity {
         this.direction = direction;
     }
 
-    
+   
 }
