@@ -1,15 +1,15 @@
 package br.com.test.gotomars.data.usecases;
 
 import br.com.test.gotomars.domain.entities.QuadrantEntity;
+import br.com.test.gotomars.domain.repositories.QuadrantRepository;
 import br.com.test.gotomars.domain.usecases.GenerateQuadrantsUsecase;
-import br.com.test.gotomars.infra.repositories.LocalQuadrantRepository;
 
 public class GenerateQuadrantsUsecaseImpl implements GenerateQuadrantsUsecase {
 
     private final int size = 16;
-    private LocalQuadrantRepository repository;
+    private QuadrantRepository repository;
 
-    public GenerateQuadrantsUsecaseImpl(LocalQuadrantRepository repository) {
+    public GenerateQuadrantsUsecaseImpl(QuadrantRepository repository) {
         this.repository = repository;
     }
 

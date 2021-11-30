@@ -2,11 +2,11 @@ package br.com.test.gotomars.domain.usecases.params;
 
 import br.com.test.gotomars.domain.entities.ProbeEntity;
 
-public class MoveProbeUsecaseParams {
+public class LandProbeUsecaseParams {
     private String moviments;
     private ProbeEntity entity;
 
-    public MoveProbeUsecaseParams(String movements, ProbeEntity entity) {
+    public LandProbeUsecaseParams(String movements, ProbeEntity entity) {
         this.moviments = movements;
         this.entity = entity;
     }

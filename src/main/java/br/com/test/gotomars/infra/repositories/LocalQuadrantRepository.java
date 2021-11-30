@@ -14,7 +14,22 @@ public class LocalQuadrantRepository implements QuadrantRepository {
     }
 
     @Override
+    public QuadrantEntity addProbe(ProbeEntity entity) {
+
+        quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
+        return quadrantEntities[entity.getX()][entity.getY()];
+    }
+
+    @Override
     public QuadrantEntity updateProbeInQuadrant(ProbeEntity entity) {
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (quadrantEntities[i][j].getProbe() != null) {
+
+                }
+            }
+        }
         quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
         return quadrantEntities[entity.getX()][entity.getY()];
     }
