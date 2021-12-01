@@ -1,7 +1,6 @@
 package br.com.test.gotomars.data.usecases;
 
 import br.com.test.gotomars.domain.entities.ProbeEntity;
-import br.com.test.gotomars.domain.entities.QuadrantEntity;
 import br.com.test.gotomars.domain.enums.Directions;
 import br.com.test.gotomars.domain.repositories.QuadrantRepository;
 import br.com.test.gotomars.domain.repositories.params.UpdateProbeInQuadrantParams;
@@ -10,8 +9,8 @@ import br.com.test.gotomars.domain.usecases.params.MoveProbeUsecaseParams;
 import br.com.test.gotomars.domain.windRose.WindRose;
 
 public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
-    private QuadrantRepository repository;
-    private WindRose[] windRoses;
+    private final QuadrantRepository repository;
+    private final WindRose[] windRoses;
 
     public MoveProbeUsecaseImpl(QuadrantRepository repository) {
         this.repository = repository;
@@ -26,8 +25,6 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
     @Override
     public ProbeEntity execute(MoveProbeUsecaseParams params) {
         ProbeEntity probeEntity = params.getEntity().getProbe();
-        QuadrantEntity quadrant;
-
 
         for (int i = 0; i < params.getMoviments().length(); i++) {
             char c = params.getMoviments().charAt(i);
@@ -60,16 +57,15 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
         try {
             return repository.updateProbeInQuadrant(new UpdateProbeInQuadrantParams(probeEntity, params.getEntity()));
         } catch (Exception e) {
-            System.out.println(e.toString());
             return null;
         }
     }
 
     private Directions nextOrPreviousDirection(Directions direction, boolean isNext) {
         Directions dir = null;
-        for (int i = 0; i < this.windRoses.length; i++) {
-            if (this.windRoses[i].getCurrentNode() == direction) {
-                dir = isNext ? this.windRoses[i].getNextNode() : this.windRoses[i].getPreviousNode();
+        for (WindRose windRose : this.windRoses) {
+            if (windRose.getCurrentNode() == direction) {
+                dir = isNext ? windRose.getNextNode() : windRose.getPreviousNode();
                 break;
             }
         }
