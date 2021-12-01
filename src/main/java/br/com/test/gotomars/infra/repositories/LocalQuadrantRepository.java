@@ -38,6 +38,11 @@ public class LocalQuadrantRepository implements QuadrantRepository {
         }
     }
 
+    @Override
+    public QuadrantEntity[][] findAll() {
+        return quadrantEntities;
+    }
+
     private boolean quadrantIsEmpty(ProbeEntity entity) {
         return quadrantEntities[entity.getX()][entity.getY()].getProbe() == null;
 

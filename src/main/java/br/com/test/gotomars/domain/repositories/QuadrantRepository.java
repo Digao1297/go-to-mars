@@ -10,4 +10,6 @@ public interface QuadrantRepository {
     QuadrantEntity landProbeInQuadrant(ProbeEntity entity) throws Exception;
 
     ProbeEntity updateProbeInQuadrant(UpdateProbeInQuadrantParams params) throws Exception;
+
+    QuadrantEntity[][] findAll();
 }
