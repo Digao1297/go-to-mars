@@ -16,11 +16,16 @@ public class LocalQuadrantRepository implements QuadrantRepository {
 
     @Override
     public QuadrantEntity landProbeInQuadrant(ProbeEntity entity) throws Exception {
-        if (quadrantIsEmpty(entity)) {
-            quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
-            return quadrantEntities[entity.getX()][entity.getY()];
+
+        if (landInRange(entity)) {
+            if (quadrantIsEmpty(entity)) {
+                quadrantEntities[entity.getX()][entity.getY()].setProbe(entity);
+                return quadrantEntities[entity.getX()][entity.getY()];
+            } else {
+                throw new Exception("Quadrante ocupado!");
+            }
         } else {
-            throw new Exception("Quadrante ocupado!");
+            throw new Exception("Posição inválida");
         }
     }
 
@@ -29,13 +34,18 @@ public class LocalQuadrantRepository implements QuadrantRepository {
         QuadrantEntity quadrantEntity = params.getQuadrantEntity();
         ProbeEntity newPositionEntity = params.getProbeEntity();
 
-        if (quadrantIsEmpty(newPositionEntity)) {
-            quadrantEntities[quadrantEntity.getX()][quadrantEntity.getY()].setProbe(null);
-            quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].setProbe(newPositionEntity);
-            return quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].getProbe();
+        if (landInRange(newPositionEntity)) {
+            if (quadrantIsEmpty(newPositionEntity)) {
+                quadrantEntities[quadrantEntity.getX()][quadrantEntity.getY()].setProbe(null);
+                quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].setProbe(newPositionEntity);
+                return quadrantEntities[newPositionEntity.getX()][newPositionEntity.getY()].getProbe();
+            } else {
+                throw new Exception("Quadrante ocupado!");
+            }
         } else {
-            throw new Exception("Quadrante ocupado!");
+            throw new Exception("Posição inválida");
         }
+
     }
 
     @Override
@@ -45,6 +55,9 @@ public class LocalQuadrantRepository implements QuadrantRepository {
 
     private boolean quadrantIsEmpty(ProbeEntity entity) {
         return quadrantEntities[entity.getX()][entity.getY()].getProbe() == null;
+    }
 
+    private boolean landInRange(ProbeEntity entity) {
+        return entity.getX() < size && entity.getY() < size;
     }
 }

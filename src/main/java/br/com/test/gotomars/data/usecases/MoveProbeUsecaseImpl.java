@@ -16,14 +16,14 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
         this.repository = repository;
         this.windRoses = new WindRose[]{
                 new WindRose(Directions.E, Directions.W, Directions.N),
-                new WindRose(Directions.S, Directions.N, Directions.E),
-                new WindRose(Directions.W, Directions.E, Directions.S),
-                new WindRose(Directions.N, Directions.S, Directions.W),
+                new WindRose(Directions.N, Directions.S, Directions.E),
+                new WindRose(Directions.E, Directions.W, Directions.S),
+                new WindRose(Directions.S, Directions.N, Directions.W),
         };
     }
 
     @Override
-    public ProbeEntity execute(MoveProbeUsecaseParams params) {
+    public ProbeEntity execute(MoveProbeUsecaseParams params) throws Exception {
         ProbeEntity probeEntity = params.getEntity().getProbe();
 
         for (int i = 0; i < params.getMoviments().length(); i++) {
@@ -54,11 +54,8 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
                     }
             }
         }
-        try {
-            return repository.updateProbeInQuadrant(new UpdateProbeInQuadrantParams(probeEntity, params.getEntity()));
-        } catch (Exception e) {
-            return null;
-        }
+        return repository.updateProbeInQuadrant(new UpdateProbeInQuadrantParams(probeEntity, params.getEntity()));
+
     }
 
     private Directions nextOrPreviousDirection(Directions direction, boolean isNext) {

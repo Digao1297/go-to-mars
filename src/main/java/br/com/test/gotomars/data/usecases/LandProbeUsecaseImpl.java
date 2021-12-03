@@ -18,13 +18,10 @@ public class LandProbeUsecaseImpl implements LandProbeUsecase {
 
     @Override
     public QuadrantEntity execute(ProbeEntity entity) throws Exception {
-        try {
-            ProbeEntity probe = probeRepository.create(entity);
-            QuadrantEntity quadrant = quadrantRepository.landProbeInQuadrant(probe);
-            return quadrant;
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            return null;
-        }
+
+        ProbeEntity probe = probeRepository.create(entity);
+        QuadrantEntity quadrant = quadrantRepository.landProbeInQuadrant(probe);
+        return quadrant;
+
     }
 }
