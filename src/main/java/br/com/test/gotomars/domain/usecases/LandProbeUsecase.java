@@ -4,5 +4,5 @@ import br.com.test.gotomars.domain.entities.ProbeEntity;
 import br.com.test.gotomars.domain.entities.QuadrantEntity;
 
 public interface LandProbeUsecase {
-    QuadrantEntity execute(ProbeEntity entity);
+    QuadrantEntity execute(ProbeEntity entity) throws Exception;
 }

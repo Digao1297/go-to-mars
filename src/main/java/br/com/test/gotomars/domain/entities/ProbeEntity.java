@@ -7,6 +7,7 @@ public class ProbeEntity {
     private String name;
     private int x;
     private int y;
+
     private Directions direction;
 
 
@@ -14,6 +15,7 @@ public class ProbeEntity {
         this.name = name;
         this.x = x;
         this.y = y;
+
         this.direction = direction;
     }
 
@@ -47,5 +49,15 @@ public class ProbeEntity {
 
     public void setDirection(Directions direction) {
         this.direction = direction;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                        ", x=" + x +
+                        ", y=" + y +
+                        ", direction=" + direction;
+
     }
 }
