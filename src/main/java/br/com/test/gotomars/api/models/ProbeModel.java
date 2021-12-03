@@ -2,12 +2,27 @@ package br.com.test.gotomars.api.models;
 
 import br.com.test.gotomars.domain.enums.Directions;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class ProbeModel {
+
+    @NotNull(message = "Este campo é obrigatório")
     private String name;
+
+    @Min(value = Integer.MIN_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
+    @Max(value = Integer.MAX_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
     private int x;
+
+    @Min(value = Integer.MIN_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
+    @Max(value = Integer.MAX_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
     private int y;
 
+    @NotNull(message = "Este campo é obrigatório")
     private Directions direction;
+
+    @NotNull(message = "Este campo é obrigatório")
     private String movements;
 
 
