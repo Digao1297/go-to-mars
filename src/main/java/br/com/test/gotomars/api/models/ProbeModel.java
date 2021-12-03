@@ -9,21 +9,21 @@ import javax.validation.constraints.NotNull;
 public class ProbeModel {
 
     @NotNull(message = "Este campo é obrigatório")
-    private String name;
+    private final String name;
 
     @Min(value = Integer.MIN_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
     @Max(value = Integer.MAX_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
-    private int x;
+    private final int x;
 
     @Min(value = Integer.MIN_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
     @Max(value = Integer.MAX_VALUE, message = "Este campo é obrigatório e deve ser Inteiro")
-    private int y;
+    private final int y;
 
     @NotNull(message = "Este campo é obrigatório")
-    private Directions direction;
+    private final Directions direction;
 
     @NotNull(message = "Este campo é obrigatório")
-    private String movements;
+    private final String movements;
 
 
     public ProbeModel(String name, int x, int y, Directions direction, String movements) {
@@ -38,39 +38,25 @@ public class ProbeModel {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public Directions getDirection() {
         return direction;
     }
 
-    public void setDirection(Directions direction) {
-        this.direction = direction;
-    }
 
     public String getMovements() {
         return movements;
     }
 
-    public void setMovements(String movements) {
-        this.movements = movements;
-    }
+
 }
