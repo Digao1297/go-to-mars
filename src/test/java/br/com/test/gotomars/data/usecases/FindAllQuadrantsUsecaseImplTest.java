@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = FindAllQuadrantsUsecaseImplTest.class)
 public class FindAllQuadrantsUsecaseImplTest {
 
-    private GenerateQuadrantsUsecase generateQuadrantsUsecase;
     private FindAllQuadrantsUsecase findAllQuadrantsUsecase;
 
     @BeforeEach
@@ -22,7 +21,7 @@ public class FindAllQuadrantsUsecaseImplTest {
         QuadrantRepository quadrantRepository = new LocalQuadrantRepository();
 
         findAllQuadrantsUsecase = new FindAllQuadrantsUsecaseImpl(quadrantRepository);
-        generateQuadrantsUsecase = new GenerateQuadrantsUsecaseImpl(quadrantRepository);
+        GenerateQuadrantsUsecase generateQuadrantsUsecase = new GenerateQuadrantsUsecaseImpl(quadrantRepository);
 
         generateQuadrantsUsecase.execute();
     }
