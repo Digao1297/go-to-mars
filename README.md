@@ -7,6 +7,6 @@
 </br>
 </br>
 
-<p align="center"> :pushpin: Aplicação de <strong>Web Service</strong> baseada em <a href="https://spring.io" target="_blank">Spring Boot</a>></p>
+<p align="center"> :pushpin: Aplicação <strong>Web Service</strong> baseada em <a href="https://spring.io" target="_blank">Spring Boot</a></p>
 <p align="center">
 
