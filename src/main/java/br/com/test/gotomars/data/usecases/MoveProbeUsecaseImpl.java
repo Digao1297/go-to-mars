@@ -16,9 +16,14 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
         this.repository = repository;
         this.windRoses = new WindRose[]{
                 new WindRose(Directions.E, Directions.W, Directions.N),
+                new WindRose(Directions.S, Directions.N, Directions.E),
+                new WindRose(Directions.W, Directions.E, Directions.S),
+                new WindRose(Directions.N, Directions.S, Directions.W),
+                
+                /*new WindRose(Directions.E, Directions.W, Directions.N),
                 new WindRose(Directions.N, Directions.S, Directions.E),
                 new WindRose(Directions.E, Directions.W, Directions.S),
-                new WindRose(Directions.S, Directions.N, Directions.W),
+                new WindRose(Directions.S, Directions.N, Directions.W),*/
         };
     }
 
@@ -40,16 +45,16 @@ public class MoveProbeUsecaseImpl implements MoveProbeUsecase {
                 case 'M':
                     switch (probeEntity.getDirection()) {
                         case N:
-                            probeEntity.setY(params.getEntity().getY() + 1);
+                            probeEntity.setY(probeEntity.getY() + 1);
                             break;
                         case W:
-                            probeEntity.setX(params.getEntity().getX() - 1);
+                            probeEntity.setX(probeEntity.getX() - 1);
                             break;
                         case E:
-                            probeEntity.setX(params.getEntity().getX() + 1);
+                            probeEntity.setX(probeEntity.getX() + 1);
                             break;
                         case S:
-                            probeEntity.setY(params.getEntity().getY() - 1);
+                            probeEntity.setY(probeEntity.getY() - 1);
                             break;
                     }
             }
