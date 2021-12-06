@@ -1,6 +1,5 @@
 package br.com.test.gotomars.api.models;
 
-import br.com.test.gotomars.api.validations.EnumPattern;
 import br.com.test.gotomars.domain.enums.Directions;
 
 import javax.validation.constraints.Max;
@@ -21,7 +20,6 @@ public class ProbeModel {
     private final int y;
 
     @NotNull(message = "Este campo é obrigatório")
-    @EnumPattern(regexp = "N|E|S|W", message = "Valor inválido!")
     private final Directions direction;
 
     @NotNull(message = "Este campo é obrigatório")
