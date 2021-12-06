@@ -16,4 +16,4 @@
 <p>A Aplicação será responsavel por gerar um plano simulando a superficie de marte e gerenciar o pouso e a movimentação da sonda.</p>
 
 ## :pushpin: License
-<i>Go To Mars</i> usa a licença [MIT licensed](LICENSE).
+<i>Go To Mars</i> usa a licença [MIT license](LICENSE).
